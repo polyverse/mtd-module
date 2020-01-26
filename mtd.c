@@ -23,8 +23,8 @@ static ssize_t mtd_write(struct file *file, const char __user *ubuf,size_t count
 		return -EFAULT;
 	if(copy_from_user(buf, ubuf, count))
 		return -EFAULT;
-	n = sscanf(buf, "%d", &thread_id);
-	if(n != 2)
+	n = sscanf(buf, "%d", &t_id);
+	if(n != 1)
 		return -EFAULT;
 	thread_id = t_id; 
 	c = strlen(buf);
