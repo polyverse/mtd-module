@@ -5,6 +5,8 @@
 #include <linux/uaccess.h>
 #include <linux/proc_fs.h>
 
+#include "task_state.h"
+
 #define BUFSIZE  100
 
 MODULE_LICENSE("https://polyverse.com/eula/");
@@ -36,9 +38,14 @@ static ssize_t mtd_read(struct file *file, char __user *ubuf,size_t count, loff_
 {
 	char buf[BUFSIZE];
 	int l = 0;
+	char *ts = NULL;
 	if(*ppos > 0 || count < BUFSIZE)
 		return 0;
-	l += sprintf(buf, "thread_id = %d\n", thread_id);
+
+	ts = task_state();
+	if( ts == NULL)
+		return -EFAULT;
+	l += sprintf(buf, "thread_id = %d\n %s\n", thread_id, ts);
 	
 	if(copy_to_user(ubuf, buf, l))
 		return -EFAULT;

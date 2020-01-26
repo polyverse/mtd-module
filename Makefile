@@ -1,4 +1,5 @@
-obj-m	:= mtd.o
+obj-m += mtd.o
+mtd-objs := task_state.o mtd_main.o
 
 KERNELDIR ?= /lib/modules/$(shell uname -r)/build
 PWD       := $(shell pwd)
