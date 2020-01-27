@@ -9,7 +9,8 @@
 
 #define BUFSIZE  100
 
-MODULE_LICENSE("https://polyverse.com/eula/");
+MODULE_LICENSE("GPL"); // TODO need this for use of find_vpid in task_state.c, will need to reimplement using other means later
+// MODULE_LICENSE("https://polyverse.com/eula/"); 
 MODULE_AUTHOR("Mariusz Borsa");
 
 static int thread_id = -1;
@@ -37,12 +38,13 @@ static ssize_t mtd_write(struct file *file, const char __user *ubuf,size_t count
 static ssize_t mtd_read(struct file *file, char __user *ubuf,size_t count, loff_t *ppos) 
 {
 	char buf[BUFSIZE];
+	char buf_task[BUFSIZE];
 	int l = 0;
 	char *ts = NULL;
 	if(*ppos > 0 || count < BUFSIZE)
 		return 0;
 
-	ts = task_state();
+	ts = task_state(thread_id, buf_task, BUFSIZE);
 	if( ts == NULL)
 		return -EFAULT;
 	l += sprintf(buf, "thread_id = %d\n %s\n", thread_id, ts);
@@ -62,7 +64,7 @@ static struct file_operations mtd_ops =
 
 static int mtd_init(void)
 {
-	ent = proc_create("polyverse_mtd",0660,NULL,&mtd_ops);
+	ent = proc_create("polyverse_mtd", 0660, NULL, &mtd_ops);
 	printk(KERN_ALERT "Polyverse MTD up\n");
 	return 0;
 }
