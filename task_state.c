@@ -20,6 +20,6 @@ char *task_state(int pid, char* buf, size_t buf_size)
         return "TASK NOT FOUND";
     }
     esp = KSTK_ESP_PRIVATE(task);
-    snprintf(buf, buf_size, "TASK STATE SP: %016lX", esp); 
+    snprintf(buf, buf_size, "TASK STATE SP:\n%016lX", esp); 
     return buf;
 }

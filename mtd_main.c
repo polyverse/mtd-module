@@ -47,7 +47,7 @@ static ssize_t mtd_read(struct file *file, char __user *ubuf,size_t count, loff_
 	ts = task_state(thread_id, buf_task, BUFSIZE);
 	if( ts == NULL)
 		return -EFAULT;
-	l += sprintf(buf, "thread_id = %d\n %s\n", thread_id, ts);
+	l += sprintf(buf, "THREAD_ID:\n%d\n%s\n", thread_id, ts);
 	
 	if(copy_to_user(ubuf, buf, l))
 		return -EFAULT;

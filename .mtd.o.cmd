@@ -1,1 +1,0 @@
-cmd_/home/mariusz/go/src/github.com/polyverse-security/mtd-module/mtd.o := ld -m elf_x86_64 -z max-page-size=0x200000   -r -o /home/mariusz/go/src/github.com/polyverse-security/mtd-module/mtd.o /home/mariusz/go/src/github.com/polyverse-security/mtd-module/task_state.o /home/mariusz/go/src/github.com/polyverse-security/mtd-module/mtd_main.o 
