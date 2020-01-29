@@ -4,5 +4,6 @@
 .cache.mk
 *.symvers
 *.order
+mtd.mod.c
 .tmp_versions/
 .vscode/

@@ -10,3 +10,7 @@ sudo cat /proc/polyverse_mtd
 sudo rmmod mtd.ko
 dmesg
 ```
+
+## References
+
+[Various relevant web links](./WEBLINKS.md)
