@@ -1,5 +1,12 @@
 # mtd-module
 
+## Usage - Docker
+
+```
+./build.sh
+docker run -it --privileged --rm mtd-mod
+```
+
 ## Usage
 
 ```
