@@ -1,2 +1,6 @@
-#!/bin/sh
-docker build -t mtd-mod .
+#!/bin/bash
+
+set -e
+set -o pipefail
+
+pv run MakeCompliantImage | tee IMAGE_NAME
