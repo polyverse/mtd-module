@@ -9,8 +9,7 @@
 
 #define BUFSIZE 0x10000
 
-MODULE_LICENSE("GPL"); // TODO need this for use of find_vpid in task_state.c, will need to reimplement using other means later
-// MODULE_LICENSE("https://polyverse.com/eula/"); 
+MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Mariusz Borsa");
 
 static int thread_id = -1;
