@@ -8,8 +8,9 @@ if [ ! -z "$(git status -s -uno)" ]; then
 	exit 1
 fi
 
-# need creds to be able to push to our ecr
-aws --region $AWS_DEFAULT_REGION ecr get-login  --no-include-email | bash -s
 
-docker push $(cat IMAGE_NAME)
-echo "Pushed image $(cat IMAGE_NAME)"
+commitsha="$(git rev-parse HEAD)"
+
+# need creds to be able to push to our ecr
+docker push polyverse/mtd-module:latest
+docker push polyverse/mtd-module:$commitsha

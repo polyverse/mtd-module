@@ -3,5 +3,22 @@
 set -e
 set -o pipefail
 
-pv run MakeCompliantImage | tee IMAGE_NAME
-docker tag 507760724064.dkr.ecr.us-west-2.amazonaws.com/mtd-module mtd-mod
+if [ "$(git status --porcelain)" != "" ]; then
+    GIT_STATE="dirty"
+else
+    GIT_STATE="clean"
+fi
+
+commitsha="$(git rev-parse HEAD)"
+
+docker build \
+    --build-arg "GIT_COMMIT=$(git rev-parse HEAD)" \
+    --build-arg "GIT_USERNAME=$(git config user.name)" \
+    --build-arg "GIT_BRANCH=$(git branch --show-current)" \
+    --build-arg "GIT_REMOTE=$(git remote get-url origin)" \
+    --build-arg "GIT_STATE=$GIT_STATE" \
+    -t polyverse/mtd-module:$commitsha \
+    .
+
+docker tag polyverse/mtd-module:$commitsha polyverse/mtd-module:latest
+
