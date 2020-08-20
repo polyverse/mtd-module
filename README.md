@@ -4,7 +4,7 @@
 
 ```
 ./build.sh
-docker run -it --privileged --rm mtd-mod
+docker run -it --privileged --rm polyverse/mtd-module
 ```
 
 ## Usage
