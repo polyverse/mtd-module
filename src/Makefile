@@ -16,9 +16,9 @@ clean:
 KERNELDIR ?= /lib/modules/$(shell uname -r)/build
 PWD       := $(shell pwd)
 
-ubuntu: default
- 	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules
+ubuntu:
+	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules
 
 clean_ubuntu:
- 	rm -rf *.o *~ core .depend .*.cmd *.ko *.mod.c .tmp_versions
+	rm -rf *.o *~ core .depend .*.cmd *.ko *.mod.c .tmp_versions
 
